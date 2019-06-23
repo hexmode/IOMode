@@ -2,7 +2,7 @@
 	"name": "hexmode/io-info",
 	"description": "More info than posix_isatty()",
 	"type": "library",
-	"license": "GPL-3-or-greater",
+	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
 			"name": "Mark A. Hershberger",
