@@ -1,0 +1,121 @@
+* Library to provide information on any device
+
+IOMode is based on a [[https://stackoverflow.com/a/11327451][StackOverflow answer]] and incorportes that code into a reusable library.
+
+From SO:
+#+begin_quote
+I also needed a slightly more flexible solution than posix_isatty that could detect:
+
+    Is the script being run from the terminal
+    Is the script receiving data via a pipe or from a file
+    Is the output being redirected to a file
+#+end_quote
+** Example
+
+This library can be used in the following way:
+#+begin_src php 
+  use Hexmode\IOMode;
+
+  if ( IOMode::isTTY() ) {
+      print "tty\n";
+  }
+  if ( IOMode::isFifo() ) {
+      print "pipe\n";
+  }
+  if ( IOMode::isReg() ) {
+      print "regular file (redirection)\n";
+  }
+  if ( IOMode::isChr() ) {
+      print "character device (normal)\n";
+  }
+  if ( IOMode::isDir() ) {
+      print "directory (?!?!)\n";
+  }
+  if ( IOMode::isBlk() ) {
+      print "block device\n";
+  }
+  if ( IOMode::isLnk() ) {
+          print "symlink\n";
+  }
+  if ( IOMode::isSock() ) {
+      print "socket\n";
+  }
+#+end_src
+(This above  script is in the included =example/doc1.php=.)
+
+Given the following commands, you'll get different output:
+#+begin_example
+$ php example/doc1.php
+tty
+character device (normal)
+$ echo 1 | php example/doc1.php
+pipe
+$ mkdir tmp; php example/doc1.php < tmp;rmdir tmp
+directory (?!?!)
+$ sudo sh -c ‘php example/doc1.php> < /dev/sda1'
+block device
+#+end_example
+
+** Using with other handles
+In addition to the is*() static methods that provide information on STDIN, there are methods that can be invoked on a =IOMode= object.
+
+The following code is included as =example/doc2.php=:
+#+begin_src php
+require( "vendor/autoload.php" );
+use Hexmode\IOMode\IOMode;
+
+$stderr = new IOMode( STDERR );
+$stdout = new IOMode( STDOUT );
+$stdin  = new IOMode( STDIN );
+
+foreach (
+	[ "in" => $stdin, "out" => $stdout, "err" => $stderr ] as $label => $io
+) {
+	if ( $io->TTY() ) {
+		print "$label: tty\n";
+	}
+	if ( $io->Fifo() ) {
+		print "$label: pipe\n";
+	}
+	if ( $io->Reg() ) {
+		print "$label: regular file (redirection)\n";
+	}
+	if ( $io->Chr() ) {
+		print "$label: character device (normal)\n";
+	}
+	if ( $io->Dir() ) {
+		print "$label: directory (?!?!)\n";
+	}
+	if ( $io->Blk() ) {
+		print "$label: block device\n";
+	}
+	if ( $io->Lnk() ) {
+		print "$label: symlink\n";
+	}
+	if ( $io->Sock() ) {
+		print "$label: socket\n";
+	}
+}
+#+end_src
+
+Given the following commands, you'll get different output:
+#+begin_example
+$ sudo sh -c 'php example/doc2.php < /dev/nvme0n1p1'
+in: block device
+out: tty
+out: character device (normal)
+err: tty
+err: character device (normal)
+$ mkdir tmp; php example/doc2.php < tmp 2> /tmp/t;rmdir tmp
+in: directory (?!?!)
+out: tty
+out: character device (normal)
+err: regular file (redirection)
+$ example/doc2.php > /tmp/t
+$ cat /tmp/t; rm /tmp/t
+in: tty
+in: character device (normal)
+out: regular file (redirection)
+err: tty
+err: character device (normal)
+#+end_example

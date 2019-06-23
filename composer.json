@@ -1,0 +1,24 @@
+{
+	"name": "hexmode/io-mode",
+	"description": "More info than posix_isatty()",
+	"type": "library",
+	"license": "GPL-3-or-greater",
+	"authors": [
+		{
+			"name": "Mark A. Hershberger",
+			"email": "mah@nichework.com"
+		}
+	],
+	"require-dev": {
+		"vimeo/psalm": "^3.2",
+		"mediawiki/mediawiki-codesniffer": "dev-master",
+		"jakub-onderka/php-parallel-lint": "dev-master",
+		"phpunit/phpunit": "~8.0"
+	},
+	"minimum-stability": "stable",
+	"autoload": {
+		"psr-4": {
+			"Hexmode\\IOMode\\": "src/"
+		}
+	}
+}
