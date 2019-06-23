@@ -1,5 +1,5 @@
 {
-	"name": "hexmode/io-mode",
+	"name": "hexmode/io-info",
 	"description": "More info than posix_isatty()",
 	"type": "library",
 	"license": "GPL-3-or-greater",
