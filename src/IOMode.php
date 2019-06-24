@@ -59,67 +59,67 @@ class IOMode {
 		$this->isSock = $mode == 0140000; // S_IFSOCK
 	}
 
-	public function tty() :?bool {
+	public function tty() {
 		return $this->isTTY;
 	}
 
-	public function fifo() :bool {
+	public function fifo() {
 		return $this->isFifo;
 	}
 
-	public function chr() :bool {
+	public function chr() {
 		return $this->isChr;
 	}
 
-	public function dir() :bool {
+	public function dir() {
 		return $this->isDir;
 	}
 
-	public function blk() :bool {
+	public function blk() {
 		return $this->isBlk;
 	}
 
-	public function reg() :bool {
+	public function reg() {
 		return $this->isReg;
 	}
 
-	public function lnk() :bool {
+	public function lnk() {
 		return $this->isLnk;
 	}
 
-	public function sock() :bool {
+	public function sock() {
 		return $this->isSock;
 	}
 
-	public static function isTTY() :bool {
+	public static function isTTY() {
 		$handle = new self( STDIN );
 		return $handle->tty();
 	}
-	public static function isFifo() :bool {
+	public static function isFifo() {
 		$handle = new self( STDIN );
 		return $handle->fifo();
 	}
-	public static function isChr() :bool {
+	public static function isChr() {
 		$handle = new self( STDIN );
 		return $handle->chr();
 	}
-	public static function isDir() :bool {
+	public static function isDir() {
 		$handle = new self( STDIN );
 		return $handle->dir();
 	}
-	public static function isBlk() :bool {
+	public static function isBlk() {
 		$handle = new self( STDIN );
 		return $handle->blk();
 	}
-	public static function isReg() :bool {
+	public static function isReg() {
 		$handle = new self( STDIN );
 		return $handle->reg();
 	}
-	public static function isLnk() :bool {
+	public static function isLnk() {
 		$handle = new self( STDIN );
 		return $handle->lnk();
 	}
-	public static function isSock() :bool {
+	public static function isSock() {
 		$handle = new self( STDIN );
 		return $handle->sock();
 	}

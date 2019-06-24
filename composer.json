@@ -4,7 +4,7 @@
 	"type": "library",
 	"license": "GPL-3.0-or-later",
 	"require": {
-		"php": "7.1"
+		"php": ">=5.3.3"
 	},
 	"authors": [
 		{
@@ -13,10 +13,7 @@
 		}
 	],
 	"require-dev": {
-		"vimeo/psalm": "^3.2",
-		"mediawiki/mediawiki-codesniffer": "dev-master",
-		"jakub-onderka/php-parallel-lint": "dev-master",
-		"phpunit/phpunit": "~8.0"
+		"mediawiki/mediawiki-codesniffer": "*"
 	},
 	"minimum-stability": "stable",
 	"autoload": {
