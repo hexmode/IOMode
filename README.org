@@ -119,5 +119,3 @@ out: regular file (redirection)
 err: tty
 err: character device (normal)
 #+end_example
-** Installation
-This [[https://getcomposer.org/][composer]] library can be installed using the name =hexmode/io-info=.  This name was chosen instead of =hexmode/io-mode= to get around [[https://github.com/composer/packagist/blob/06502cc35608f00b816cfeb2eaede29b6fc02af4/src/Packagist/WebBundle/Entity/Package.php#L295][a filter]] that blocked that name.

@@ -59,7 +59,7 @@ class IOMode {
 		$this->isSock = $mode == 0140000; // S_IFSOCK
 	}
 
-	public function tty() :bool {
+	public function tty() :?bool {
 		return $this->isTTY;
 	}
 
