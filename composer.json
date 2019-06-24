@@ -1,6 +1,6 @@
 {
 	"name": "hexmode/io-mode",
-	"description": "More info than posix_isatty()",
+	"description": "More than just posix_isatty()",
 	"type": "library",
 	"license": "GPL-3.0-or-later",
 	"require": {
