@@ -3,6 +3,9 @@
 	"description": "More info than posix_isatty()",
 	"type": "library",
 	"license": "GPL-3.0-or-later",
+	"require": {
+		"php": "7.1"
+	},
 	"authors": [
 		{
 			"name": "Mark A. Hershberger",
